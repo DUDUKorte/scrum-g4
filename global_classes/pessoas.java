@@ -1,6 +1,6 @@
 package global_classes;
 
-public class pessoas{
+public class Pessoas{
     //Superclasse
     String nome;
     int idade;
@@ -9,7 +9,7 @@ public class pessoas{
     String genero;
     String cpf;
 
-    public pessoas(String nome, int idade, String telefone, String endereco, String genero, String cpf){
+    public Pessoas(String nome, int idade, String telefone, String endereco, String genero, String cpf){
         //Método construtor
         this.nome = nome;
         this.idade = idade;
