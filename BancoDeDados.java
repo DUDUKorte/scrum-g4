@@ -3,8 +3,8 @@ import java.util.List;
 
 public class BancoDeDados {
     //Banco de dados apenas simulado, não funciona de fato
-    private List<Associado> associados = new ArrayList<>();
-    private List<Funcionario> funcionarios = new ArrayList<>();
+    private List<Associado> associados = new ArrayList<>(); //Lista com os associados cadastrados
+    private List<Funcionario> funcionarios = new ArrayList<>(); //Lista com os funcionários cadastrados
 
     //ASSOCIADOS
     //Método que adiciona associados ao "banco de dados"
@@ -14,18 +14,18 @@ public class BancoDeDados {
 
     public Associado encontrarAssociado(String nome){
         //Verifica cada associado se possui o nome igual ao nome procurado
-        for(Associado associado : associados){
-            if(associado.getNome().equals(nome)){
-                return associado;
+        for(Associado associado : associados){ //Vai verificar cada associado dentro da lista
+            if(associado.getNome().toLowerCase().equals(nome.toLowerCase())){ //Verifica se o nome do associado procurado é igual ao nome do associado da lista, em lower case para não ter problema com letrar maiúsculas
+                return associado; //Retorna o objeto do associado
             }
         }
         return null; //Associado não encontrado
     }
 
-    public void atualizarAtributoAssociado(String nome, String atributo, String valor){
-        Associado associado = encontrarAssociado(nome);
+    public void atualizarAtributoAssociado(String nome, String atributo, String valor){ //Vai atualizar qualquer atributo do associado com base no nome do atributo
+        Associado associado = encontrarAssociado(nome); //Procura o associado que quer atualizar o atributo
         if(associado instanceof Associado){ //Verifica se o associado encontrado é da classe do associado
-            switch (atributo.toLowerCase()) {
+            switch (atributo.toLowerCase()) { //Verifica qual é o atributo a ser atualizado, utilizei switch case para ficar mais simples, com menos métodos
                 case "nome":
                     ((Associado) associado).setNome(valor);                
                     break;
@@ -64,7 +64,7 @@ public class BancoDeDados {
     public Funcionario encontrarFuncionario(String nome){
         //Verifica cada Funcionário se possui o nome igual ao nome procurado
         for(Funcionario funcionario: funcionarios){
-            if(funcionario.getNome().equals(nome)){
+            if(funcionario.getNome().toLowerCase().equals(nome.toLowerCase())){
                 return funcionario;
             }
         }
