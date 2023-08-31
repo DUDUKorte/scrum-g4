@@ -21,4 +21,11 @@ public class Gerente extends Pessoa{
             objFuncionario.setNivel(nivel);
         }
     }
+
+    public void verificarPermissao(String funcionario){
+        Funcionario objFuncionario = bancoDeDados.encontrarFuncionario(funcionario);
+        if(objFuncionario != null){
+            System.out.println("Nível de acesso de "+funcionario+": "+ objFuncionario.getNivel());
+        }
+    }
 }
