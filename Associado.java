@@ -1,7 +1,9 @@
+
 public class Associado extends Pessoa{
     String tituloAssociado;
+    DadosDePagamento dadosDePagamento;
 
-    Associado(String nome, int idade, String telefone, String endereco, String genero, String cpf, String email, String tituloAssociado){
+    public Associado(String nome, int idade, String telefone, String endereco, String genero, String cpf, String email, String tituloAssociado){
         super(nome, idade, telefone, endereco, genero, cpf, email);
         this.tituloAssociado = tituloAssociado;
     }
@@ -14,4 +16,9 @@ public class Associado extends Pessoa{
     public void setTituloAssociado(String tituloAssociado) {
         this.tituloAssociado = tituloAssociado;
     }
+
+    public void setDadosPagamento(DadosDePagamento dadosDePagamento){
+        this.dadosDePagamento = dadosDePagamento;
+    }
+
 }

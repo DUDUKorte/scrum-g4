@@ -1,3 +1,4 @@
+
 public class Pessoa {
     //Atributos da Superclasse Pessoa
     String nome;
@@ -23,7 +24,7 @@ public class Pessoa {
         return nome;
     }
 
-    void setNome(String novoNome){
+    public void setNome(String novoNome){
         nome = novoNome;
     }
 

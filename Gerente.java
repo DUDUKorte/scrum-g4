@@ -1,5 +1,6 @@
+
 public class Gerente extends Pessoa{
-    BancoDeDados bancoDeDados;
+    private BancoDeDados bancoDeDados;
 
     Gerente(String nome, int idade, String telefone, String endereco, String genero, String cpf, String email){
         super(nome, idade, telefone, endereco, genero, cpf, email);

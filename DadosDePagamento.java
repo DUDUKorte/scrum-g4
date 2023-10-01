@@ -1,8 +1,9 @@
-public class DadosDePagamento {
-    String formaDePagamento;
-    double valorMensalidade;
 
-    DadosDePagamento(String formaDePagamento, double valorMensalidade){
+public class DadosDePagamento {
+    private String formaDePagamento;
+    private double valorMensalidade;
+
+    public DadosDePagamento(String formaDePagamento, double valorMensalidade){
         this.formaDePagamento = formaDePagamento;
         this.valorMensalidade = valorMensalidade;
     }
@@ -11,7 +12,6 @@ public class DadosDePagamento {
     public String getFormaDePagamento() {
         return formaDePagamento;
     }
-
     public void setFormaDePagamento(String formaDePagamento) {
         this.formaDePagamento = formaDePagamento;
     }
@@ -20,7 +20,6 @@ public class DadosDePagamento {
     public double getValorMensalidade() {
         return valorMensalidade;
     }
-
     public void setValorMensalidade(double valorMensalidade) {
         this.valorMensalidade = valorMensalidade;
     }

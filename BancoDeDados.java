@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,6 +6,7 @@ public class BancoDeDados {
     //Banco de dados apenas simulado, não funciona de fato
     private List<Associado> associados = new ArrayList<>(); //Lista com os associados cadastrados
     private List<Funcionario> funcionarios = new ArrayList<>(); //Lista com os funcionários cadastrados
+    private List<Atividade> atividades = new ArrayList<>(); //Lista com as atividades cadastradas
 
     //ASSOCIADOS
     //Método que adiciona associados ao "banco de dados"
@@ -55,6 +57,15 @@ public class BancoDeDados {
         }
     }
 
+    //Método que remove Funcionário do "Bando de dados"
+    //TODO: TESTAR, NÃO SABEMOS SE ESTÁ FUNCIONANDO, SE NÃO FUNCIONAR --> TENTE COM O USO DE INDEX PELO MÉTODO ENCONTRAR FUNCIONÁRIO
+    public void removerFuncionario(String nome){
+        Funcionario funcionario = encontrarFuncionario(nome);
+        if(funcionario instanceof Funcionario){
+            funcionarios.remove(funcionario);
+        }
+    }
+
     //FUNCIONÁRIOS
     //Método que adiciona Funcionário ao "banco de dados"
     public void adicionarFuncionario(Funcionario funcionario){
@@ -96,7 +107,63 @@ public class BancoDeDados {
                 case "cargo":
                     ((Funcionario) funcionario).setCargo(valor);                
                     break;
+                case "senha":
+                    ((Funcionario) funcionario).setSenha(valor);
+                    break;
             }
+        }
+    }
+
+    //Método que remove associado do "Bando de dados"
+    //TODO: TESTAR, NÃO SABEMOS SE ESTÁ FUNCIONANDO, SE NÃO FUNCIONAR --> TENTE COM O USO DE INDEX PELO MÉTODO ENCONTRAR ASSOCIADO
+    public void removeraAssociado(String nome){
+        Associado associado = encontrarAssociado(nome);
+        if(associado instanceof Associado){
+            associados.remove(associado);
+        }
+    }
+
+    //ATIVIDADES
+    //Método que adiciona Atividade ao "Banco de dados"
+    public void adicionarAtividade(Atividade atividade){
+        atividades.add(atividade);
+    }
+
+    public Atividade encontrarAtividade(String nome){
+        //Verifica cada atividade e retorna o objeto se for igual
+        for(Atividade atividade: atividades){
+            if(atividade.getNomeAtividade().toLowerCase().equals(nome)){
+                return atividade;
+            }
+        }
+        return null;
+    }
+
+    public void atualizarAtributoAtividade(String nome, String atributo, String valor){
+        Atividade atividade = encontrarAtividade(nome); 
+        if(atividade instanceof Atividade){ //Verifica se a atividade é da classe atividade
+            switch(atributo.toLowerCase()){
+                case "nome":
+                ((Atividade) atividade).setNomeAtividade(nome);
+                break;
+            }
+        }
+    }
+
+    //Método que remove atividade do "Bando de dados"
+    //TODO: TESTAR, NÃO SABEMOS SE ESTÁ FUNCIONANDO, SE NÃO FUNCIONAR --> TENTE COM O USO DE INDEX PELO MÉTODO ENCONTRAR ATIVIDADE
+    public void removerAtividade(String nome){
+        Atividade atividade = encontrarAtividade(nome);
+        if(atividade instanceof Atividade){
+            atividades.remove(atividade);
+        }
+    }
+
+    public void atualizarAtividade(String nome, Atividade newAtividade){
+        Atividade atividade = encontrarAtividade(nome);
+        if(atividade instanceof Atividade){
+            atividades.remove(atividade);
+            atividades.add(newAtividade);
         }
     }
 }
