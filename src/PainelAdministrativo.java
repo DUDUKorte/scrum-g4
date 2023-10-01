@@ -1,4 +1,5 @@
-package src;
+package src; //Pacote src = pasta com todas as classes do código fonte
+// Importação das bibliotecas a serem usadas:
 import java.util.List;
 
 public class PainelAdministrativo {
@@ -7,16 +8,18 @@ public class PainelAdministrativo {
     private int nivel_necessario = 2; //Nível mínimo para acesso do funcionário ao painel
     private boolean permissao = false;
 
+    //Método construtor
     PainelAdministrativo(String nomeFuncionario, BancoDeDados bancoDeDados){ //Método construtor
         this.bancoDeDados = bancoDeDados; //Usa o banco de dados informado
         recarregarNivelFuncionario(nomeFuncionario); //Carrega o nível do funcionário que está usando o painel pelo nome do funcionário
     }
 
-    public void recarregarNivelFuncionario(String nomeFuncionario){
+    //Método para recaerregar o nível do funcionário que está acessando o painel administrativo, caso ele seja iniciado e depois troque de funcinário ou o nível dele aumente
+    public void recarregarNivelFuncionario(String nomeFuncionario){ //Também funciona como troca de funcionário do painel
         Funcionario funcionario = bancoDeDados.encontrarFuncionario(nomeFuncionario);
-        if(funcionario != null){
+        if(funcionario != null){ //Verifica se o funcionário que retornou é um funcionário
             this.nivel = funcionario.getNivel(); //Atualiza nível do funcionário que está usando o painel
-            if(this.nivel >= this.nivel_necessario){
+            if(this.nivel >= this.nivel_necessario){ //se funcionário tiver acesso, ele vai trocar a variável de permissão
                 this.permissao = true;
             }else{ //Aviso ao funcionário caso ele tente acessar o painel, mas não possui permissão
                 System.out.println("Nível "+this.nivel_necessario+" Necessário");
@@ -75,20 +78,21 @@ public class PainelAdministrativo {
         bancoDeDados.adicionarAtividade(atividade);
     }
 
+    //Método para exbiri as ativisdades cadastradas no bd
     public void visualizarAtividades(String nome){
         Atividade atividade = bancoDeDados.encontrarAtividade(nome);
-        if(atividade != null){
+        if(atividade != null){ //Verifica se encontrou a atividade
             System.out.println();
             System.out.println("Nome: "+atividade.getNomeAtividade());
             System.out.println("Descrição: "+atividade.getDescricao());
             System.out.println("Faixa Etária: "+atividade.getFaixaEtaria());
             System.out.println("Níveis de Habilidade: "+atividade.getNiveisHabilidade());
             
-            //Esqueminha para mostrar todas as atividades
-            List<Turma> turmas = atividade.getTurmas();
+            //Esqueminha para mostrar todas as turmas das atividades
+            List<Turma> turmas = atividade.getTurmas(); //Pega as turmas da atividade atual em uma nova lista
             System.out.println("Turmas: ");
-            if(turmas.size() > 0){
-                for(Turma i : turmas){
+            if(turmas.size() > 0){ //Verifiac se tem turmas cadastradas TODO: VERIFICAR SE ESSE IF ESTÁ CORRETO
+                for(Turma i : turmas){ //Percorre todas as turmas e mostra cada uma separada por "======="
                     System.out.println("\tNome: "+i.getNome());
                     System.out.println("\tDia da Semana: "+i.getDiaSemana());
                     System.out.println("\tHorário de Início: "+i.getHorarioInicio());
@@ -102,12 +106,12 @@ public class PainelAdministrativo {
         }
     }
 
-    //adicioarTurma à atividade
+    //adicioarTurma à atividade com aquele esquema de remover a atividade do bd e adicionar ela mesma com a nova turma
     public void adicionarTurma(String nomeAtividade, String nomeTurma, int diaSemana, String horarioInicio, String horarioTermino){
         Atividade atividade = bancoDeDados.encontrarAtividade(nomeAtividade);
         if(atividade != null){
-            atividade.addTurmas(nomeTurma, diaSemana, horarioInicio, horarioTermino);
-            bancoDeDados.atualizarAtividade(nomeAtividade, atividade);
+            atividade.addTurmas(nomeTurma, diaSemana, horarioInicio, horarioTermino); //Adiciona a turma na atividade localmente
+            bancoDeDados.atualizarAtividade(nomeAtividade, atividade); //Atualiza a atividade do bd com as turmas novas
         }
     }
 }

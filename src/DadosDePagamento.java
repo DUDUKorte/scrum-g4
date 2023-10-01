@@ -1,9 +1,10 @@
-package src;
+package src; //Pacote src = pasta com todas as classes do código fonte
 
 public class DadosDePagamento {
     private String formaDePagamento;
     private double valorMensalidade;
 
+    //Método construtor
     public DadosDePagamento(String formaDePagamento, double valorMensalidade){
         this.formaDePagamento = formaDePagamento;
         this.valorMensalidade = valorMensalidade;

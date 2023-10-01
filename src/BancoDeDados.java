@@ -1,4 +1,5 @@
-package src;
+package src; //Pacote src = pasta com todas as classes do código fonte
+// Importação das bibliotecas a serem usadas:
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class BancoDeDados {
     //ASSOCIADOS
     //Método que adiciona associados ao "banco de dados"
     public void adicionarAssociado(Associado associado){
-        associados.add(associado);
+        associados.add(associado); //Adiciona o assocado na lista
     }
 
     public Associado encontrarAssociado(String nome){
@@ -53,6 +54,11 @@ public class BancoDeDados {
                 case "endereco":
                     ((Associado) associado).setEndereco(valor);                
                     break;
+                
+                //Caso final se não for nenhum dos listados acima
+                default: //SEMPRE DEVE FICAR NO FINAL DO SWITCH CASE
+                    System.out.println("Atributo não existente!");
+                    break;
             }
         }
     }
@@ -60,9 +66,9 @@ public class BancoDeDados {
     //Método que remove Funcionário do "Bando de dados"
     //TODO: TESTAR, NÃO SABEMOS SE ESTÁ FUNCIONANDO, SE NÃO FUNCIONAR --> TENTE COM O USO DE INDEX PELO MÉTODO ENCONTRAR FUNCIONÁRIO
     public void removerFuncionario(String nome){
-        Funcionario funcionario = encontrarFuncionario(nome);
-        if(funcionario instanceof Funcionario){
-            funcionarios.remove(funcionario);
+        Funcionario funcionario = encontrarFuncionario(nome); //Pega o funcionário pelo método próprio
+        if(funcionario instanceof Funcionario){ //Verifica se o funcionário é do tipo funcionário
+            funcionarios.remove(funcionario); //remove o objeto da lista, é p funcionar perfeitamente, na teoria...
         }
     }
 
@@ -121,7 +127,7 @@ public class BancoDeDados {
                     break;
 
                 //Caso final se não for nenhum dos listados acima
-                default:
+                default: //SEMPRE DEVE FICAR NO FINAL DO SWITCH CASE
                     System.out.println("Atributo não existente!");
                     break;
             }
@@ -146,13 +152,14 @@ public class BancoDeDados {
     public Atividade encontrarAtividade(String nome){
         //Verifica cada atividade e retorna o objeto se for igual
         for(Atividade atividade: atividades){
-            if(atividade.getNomeAtividade().toLowerCase().equals(nome)){
+            if(atividade.getNomeAtividade().toLowerCase().equals(nome.toLowerCase())){
                 return atividade;
             }
         }
         return null;
     }
 
+    //Método que atualiza qualquer atributo da atividade (só o nome)
     public void atualizarAtributoAtividade(String nome, String atributo, String valor){
         Atividade atividade = encontrarAtividade(nome); 
         if(atividade instanceof Atividade){ //Verifica se a atividade é da classe atividade
@@ -160,6 +167,11 @@ public class BancoDeDados {
                 case "nome":
                 ((Atividade) atividade).setNomeAtividade(nome);
                 break;
+
+                //Caso final se não for nenhum dos listados acima
+                default: //SEMPRE DEVE FICAR NO FINAL DO SWITCH CASE
+                    System.out.println("Atributo não existente!");
+                    break;
             }
         }
     }
@@ -173,11 +185,12 @@ public class BancoDeDados {
         }
     }
 
+    //Método que atualiza a atividade, é usado para adicioanr turmas, já que não da p adicionar pelo switch case no modo "convencional"
     public void atualizarAtividade(String nome, Atividade newAtividade){
-        Atividade atividade = encontrarAtividade(nome);
-        if(atividade instanceof Atividade){
-            atividades.remove(atividade);
-            atividades.add(newAtividade);
+        Atividade atividade = encontrarAtividade(nome); //Pega a atividade atual
+        if(atividade instanceof Atividade){ //Verifica se é uma atividade
+            atividades.remove(atividade); //Remove a atividade da lista
+            atividades.add(newAtividade); //Adiciona exatamente a mesma atividade, mas com os novos atributos da turma
         }
     }
 }

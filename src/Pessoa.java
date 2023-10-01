@@ -1,7 +1,10 @@
-package src;
+package src; //Pacote src = pasta com todas as classes do código fonte
 
 public class Pessoa {
     //Atributos da Superclasse Pessoa
+    //TODO --> BUG: AS VEZES O CÓDIGO FUNCIONA E AS VEZES DO NADA PARA DE FUNCIOANR COLOCANDO AS VARIÁVEIS DE PESSOA COMO private
+    //O bug q da é que ele fala "The field Pessoa.atributo is not visibleJava(33554503)"
+    //DEIXAR PÚBLICO POR ENQUANTO
     String nome;
     int idade;
     String telefone;
@@ -10,6 +13,7 @@ public class Pessoa {
     String cpf;
     String email;
 
+    //Método construtor
     Pessoa(String nome, int idade, String telefone, String endereco, String genero, String cpf, String email){
         this.nome = nome;
         this.idade = idade;
@@ -20,11 +24,11 @@ public class Pessoa {
         this.email = email;
     }
 
+    //Getters e Setters
     //Pegar e setar nome
     public String getNome(){
         return nome;
     }
-
     public void setNome(String novoNome){
         nome = novoNome;
     }
@@ -33,7 +37,6 @@ public class Pessoa {
     public String getGenero() {
         return genero;
     }
-
     public void setGenero(String genero) {
         this.genero = genero;
     }
@@ -42,7 +45,6 @@ public class Pessoa {
     public int getIdade() {
         return idade;
     }
-
     public void setIdade(int idade) {
         this.idade = idade;
     }
@@ -51,7 +53,6 @@ public class Pessoa {
     public String getCpf() {
         return cpf;
     }
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
@@ -60,7 +61,6 @@ public class Pessoa {
     public String getTelefone() {
         return telefone;
     }
-
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
@@ -69,7 +69,6 @@ public class Pessoa {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -78,9 +77,7 @@ public class Pessoa {
     public String getEndereco() {
         return endereco;
     }
-
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-
 }

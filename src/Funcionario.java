@@ -1,19 +1,20 @@
-package src;
-
+package src; //Pacote src = pasta com todas as classes do código fonte
+// Importação das bibliotecas a serem usadas:
 import java.util.ArrayList;
 import java.util.List;
 
 public class Funcionario extends Pessoa{
     private String cargo;
     private String salario;
-    private int nivel = 0;
+    private int nivel = 0; //é definido pelo gerente em outro método
     private BancoDeDados bancoDeDados;
-    private String senha = null;
-    private boolean acessoSistemaPessoal = false;
-    private List<String> hitoricoEmpregos = new ArrayList<>();
-    private List<String> treinamentos = new ArrayList<>();
-    private List<String> feedbacks = new ArrayList<>();
+    private String senha = null; //Definida pela primeira vez no setSenha
+    private boolean acessoSistemaPessoal = false; //pra verificação de alterar os dados pessoais
+    private List<String> hitoricoEmpregos = new ArrayList<>(); //Lista com o histórico de empregos do funcionário, ele mesmo pode adicionar e o gerente vai visualizar
+    private List<String> treinamentos = new ArrayList<>(); //Lista com treinamentos do funcionário
+    private List<String> feedbacks = new ArrayList<>(); //Lista com feedbacks do funcionário
 
+    //Método construtor
     Funcionario(String cargo, String salario, String nome, int idade, String telefone, String endereco, String genero, String cpf, String email){
         super(nome, idade, telefone, endereco, genero, cpf, email);
         this.cargo = cargo;
@@ -44,14 +45,17 @@ public class Funcionario extends Pessoa{
         this.nivel = nivel;
     }
 
+    //Setter banco de dados para usar o mesmo banco de dados do main, apenas provisório, quando fizermos o banco de dados on-line de fato, esse método será decscartado
     public void setBancoDeDados(BancoDeDados bancoDeDados){
         this.bancoDeDados = bancoDeDados;
     }
 
+    //Método para verificar se o funcionário já fez login e se tem o acesso ao sistema pessoal para alterar seu atributos, usado no acessoPessoalFuncionario.java
     public boolean getAcessoSistemaPessoal(){
         return acessoSistemaPessoal;
     }
 
+    //Setter da senha, funciona no primeiro uso para criar a senha, depois tem que redefinir, sistema de redefinição não funciona ainda
     public void setSenha(String newSenha){
         if(senha != null){
             this.senha = newSenha;
@@ -82,6 +86,7 @@ public class Funcionario extends Pessoa{
         return this.feedbacks;
     }
 
+    //Função de acessar o sistema, vai liberar o acesso a metódos de visualizar e atualizar infos pessoais
     public void acessarSistema(String email, String senha){
         if((email.equals(this.email)) && (senha.equals(this.senha))){
             this.acessoSistemaPessoal = true;
@@ -90,6 +95,7 @@ public class Funcionario extends Pessoa{
         }
     }
 
+    //Método para o funcionário visualizar suas prórprias informações
     public void visualizarInformacoesPessoais(){
         if(acessoSistemaPessoal){
             System.out.println();
@@ -106,10 +112,11 @@ public class Funcionario extends Pessoa{
         }
     }
 
+    //Método para alterar as informações pessoas do funcionário
     public void atualizarInformacoesPessoais(String atributo, String valor){
-        if(acessoSistemaPessoal){
-            if(!atributo.equals("cargo") || !atributo.equals("salario")){
-                this.bancoDeDados.atualizarAtributoFuncionario(this.nome, atributo, valor);
+        if(acessoSistemaPessoal){ //Verifica se o funcionário tem acesso
+            if(!atributo.equals("cargo") || !atributo.equals("salario")){ //Não permite o funcionário alterar seu próprio cargo ou salário (seria muito bom se desse)
+                this.bancoDeDados.atualizarAtributoFuncionario(this.nome, atributo, valor); //Altera atributo pelo método do banco de dados que já tá pronto
             }
         }else{
             System.out.println("Você não possui acesso!");

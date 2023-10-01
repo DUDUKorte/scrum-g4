@@ -1,8 +1,9 @@
-package src;
+package src; //Pacote src = pasta com todas as classes do código fonte
 
 public class Dependentes extends Pessoa{
     private String parentesco;
 
+    //Método construtor
     public Dependentes(String parentesco, String nome, int idade, String telefone, String endereco, String genero, String cpf, String email){
         super(nome, idade, telefone, endereco, genero, cpf, email);
         this.parentesco = parentesco;
